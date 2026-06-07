@@ -73,7 +73,9 @@ end, { expr = true })
 
 vim.pack.add {
   { src = 'https://github.com/windwp/nvim-autopairs', },
+  { src = 'https://github.com/sakhnik/quickterm.nvim', },
 }
 
 require 'nvim-autopairs'.setup {}
+
 print("hello Solia!")
