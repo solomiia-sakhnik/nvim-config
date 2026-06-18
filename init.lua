@@ -5,6 +5,7 @@ vim.pack.add {
 vim.o.background = 'light'
 vim.cmd('colorscheme gruvbox-material')
 
+vim.g.mapleader = ' '
 vim.o.expandtab = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4

@@ -87,7 +87,6 @@ local function get(module)
     configured = true
 
     configure_dap()
-    require'dapcfg.lua'
     if vim.fn.executable('gdb') == 1 then
       require('dapcfg.cpp')
     end
