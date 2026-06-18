@@ -6,25 +6,6 @@ vim.pack.add {
   { src = 'https://github.com/jbyuki/one-small-step-for-vimkind', },
 }
 
--- Left click to print the symbol (hover)
-local function on_left_click()
-  local mpos = vim.fn.getmousepos()
-  if vim.api.nvim_win_is_valid(mpos.winid) and mpos.line > 0 and mpos.column > 0 then
-    local buf = vim.api.nvim_win_get_buf(mpos.winid)
-    if vim.fn.buflisted(buf) ~= 0 then
-      local ok, lines = pcall(vim.api.nvim_buf_get_lines, buf, mpos.line - 1, mpos.line, true)
-      if ok and #lines > 0 and mpos.column <= #lines[1] then
-        vim.api.nvim_set_current_win(mpos.winid)
-        if pcall(vim.api.nvim_win_set_cursor, mpos.winid, {mpos.line, mpos.column - 1}) then
-          vim.cmd('DapViewHover')
-          return
-        end
-      end
-    end
-  end
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<LeftMouse>", true, true, true), "n", true)
-end
-
 local last_config = nil
 
 local function configure_dap()
@@ -37,7 +18,6 @@ local function configure_dap()
   end
 
   local function restore_keymaps()
-    vim.keymap.del('n', '<LeftMouse>')
     vim.keymap.del('n', '<f4>')
     vim.keymap.del('n', '<f5>')
     vim.keymap.del('n', '<f8>')
@@ -71,7 +51,6 @@ local function configure_dap()
       vim.keymap.set('n', '<right>', require'dap'.step_into, { silent = true })
       vim.keymap.set('n', '<f12>', require'dap'.step_out, { silent = true })
       vim.keymap.set('n', '<left>', require'dap'.step_out, { silent = true })
-      vim.keymap.set('n', '<LeftMouse>', on_left_click, { silent = true })
 
       timer_id = vim.fn.timer_start(1000, check_restore_keymaps)
     end
