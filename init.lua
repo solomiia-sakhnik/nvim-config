@@ -10,6 +10,10 @@ vim.o.expandtab = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 
+vim.keymap.set("n", "<leader>y", ":%y+<cr>", {
+    desc = "Copy entire file to clipboard"
+})
+
 vim.pack.add {
   { src = 'https://github.com/windwp/nvim-autopairs', },
   { src = 'https://github.com/sakhnik/quickterm.nvim', },
