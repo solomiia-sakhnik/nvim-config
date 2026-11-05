@@ -10,8 +10,11 @@ vim.o.expandtab = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 
-vim.keymap.set("n", "<leader>y", ":%y+<cr>", {
+vim.keymap.set("n", "<leader>y", "<cmd>%y+<cr>", {
     desc = "Copy entire file to clipboard"
+})
+vim.keymap.set("n", "<leader>m", "<cmd>update<cr><cmd>make<cr>", {
+    desc = "Save and make"
 })
 
 vim.pack.add {
